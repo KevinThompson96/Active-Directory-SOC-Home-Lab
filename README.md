@@ -23,13 +23,15 @@ This project builds off my previous labs, combining my Active Direcotry corpprat
 ## Attack Scenario: RDP Brute-Force
 I configured the client machine to allow RDP services and setup a port forwarding rule on the firewall to allow and forward RDP traffic on port 3389, purely for the demonstration in this lab. 
 
-Screenshot 2
+![Port forwarding rule](Screenshots/Port-Forwarding-Rule.png)
 
 After scanning the target WAN IP with nmap, a brute-force attack was launched from the Kali machine against the domain-joined Windows client.
 
-Screenshot 3
+![nmap scan](Screenshots/nmap-scan.png)
 
-Screenshot 4
+![hydra attack](Screenshots/Hydra-Attack.png)
+
+![hydra success](Screenshots/Hydra-Success.png)
 
 **Outcome:**
 
