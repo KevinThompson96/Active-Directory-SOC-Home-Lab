@@ -5,7 +5,7 @@ This project builds off my previous labs, combining my Active Direcotry corpprat
 ## Environment/Technology
 -VMware Workstation Pro
 
--pfSense (firewall and NAT)
+-pfSense (firewall)
 
 -Windows Server 2025 (Active Directory)
 
