@@ -33,6 +33,15 @@ After scanning the target WAN IP with nmap, a brute-force attack was launched fr
 
 ![hydra success](Screenshots/Hydra-Success.png)
 
+Using xfreerdp3 to remote into the domain-joined client, I added a backdoor account to maintain persistence and assigned it to the administrators group to escalate my privileges
+
+![Remote access](Screenshots/Remote-Access.png)
+
+![Added Backdoor](Screenshots/Add-Backdoor.png)
+
+![Assigned backdoor to admins](Screenshots/Backdoor-Admin.png)
+
+
 **Outcome:**
 
 -Multiple failed login attempts using the pre-configured wordlist "rockyou.txt" containing weak passwords
@@ -40,6 +49,7 @@ After scanning the target WAN IP with nmap, a brute-force attack was launched fr
 -Hydra successfully identified valid credentials
 
 -Remote access to the target system was achieved via RDP
+
 
 ## Detection and Monitoring with Wazuh
 
@@ -51,16 +61,15 @@ I installed Wazuh agents on both the domain controller and the client machine to
 
 The brute-force attack was identified by analyzing repeated failed login attempts followed by a successful login
 
-Screenshot 5
+![Wazuh failed logins](Screenshots/Failed-Login-4625.png)
 
-**Creating a Custum Wazuh Rule:**
+![Wazuh successful login](Screenshots/Successful-Login-4624.png)
 
-After the attack, I created a custom rule to alert for excessive failed login attempts
+![Wazuh user added and admin group changed](Screenshots/User-Admin-Added.png)
 
-Screenshot 6
-
-Screenshot 7
 
 **Group Policy Account Lockout and Firewall Configuration**
+
+
 
 
