@@ -27,7 +27,7 @@ I configured the client machine to allow RDP services and setup a port forwardin
 
 After scanning the target WAN IP with nmap, a brute-force attack was launched from the Kali machine against the domain-joined Windows client.
 
-![nmap scan](Screenshots/nmap-scan.png)
+![nmap scan](Screenshots/nmap-scan2.png)
 
 ![hydra attack](Screenshots/Hydra-Attack.png)
 
