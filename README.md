@@ -17,7 +17,8 @@ This project builds off my previous labs, combining my Active Direcotry corpprat
 
 
 ## Lab Architecture
-Screenshot 1
+
+![Network Diagram](Screenshots/ADSOC-Network-Diagram.png)
 
 ## Attack Scenario: RDP Brute-Force
 I configured the client machine to allow RDP services and setup a port forwarding rule on the firewall to allow and forward RDP traffic on port 3389, purely for the demonstration in this lab. 
