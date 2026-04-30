@@ -50,6 +50,8 @@ Using xfreerdp3 to remote into the domain-joined client, I added a backdoor acco
 
 -Remote access to the target system was achieved via RDP
 
+-A "backdoor" account with elevated privileges was added to maintain persistence 
+
 
 ## Detection and Monitoring with Wazuh
 
@@ -67,9 +69,21 @@ The brute-force attack was identified by analyzing repeated failed login attempt
 
 ![Wazuh user added and admin group changed](Screenshots/User-Admin-Added.png)
 
+**Observations:**
+
+-A high volume of failed login attempts in a short timeframe
+
+-Consistent targeting of a single user account (password stuffing)
+
+-User added to system and administrator group modified
+
 
 **Group Policy Account Lockout and Firewall Configuration**
 
+To protect against password stuffing, I added a group policy object (gpo) in my domain through active directory, setting the threshold to 5 invalid logon attempts before the account it locked out (for 10 minutes), and the counter resets every 10 minutes. Down below is a user account in the domain (mbailey) that has been locked out after 5 repeated attempts. To unlock the account immediately as an administrator, I could go to active directory users and groups on the domain controller, find the account in my domain, and unlock it manually. 
 
+![GPO](Screenshots/GPO.png)
+
+![Lockout](Screenshots/Lockout.png)
 
 
