@@ -67,6 +67,8 @@ The brute-force attack was identified by analyzing repeated failed login attempt
 
 ![Wazuh successful login](Screenshots/Successful-Login-4624.png)
 
+After the successful login, logs were generated for a user account created and for a change to the administators group, signaling the attacker created a backdoor account with admin privileges after the initial compromise
+
 ![Wazuh user added and admin group changed](Screenshots/User-Admin-Added.png)
 
 **Observations:**
@@ -104,4 +106,20 @@ Since i performed the brute-force attack on the client's local administrator acc
 
 -Use Microsoft Local Administrator Password Solution (LAPS) to get a unique random local admin password that is stored securely in Active Directory
 
+## Challenges and Lessons Learned
 
+-Firewall rules/configuration impacted RDP connectivity and visibility during testing
+
+-Brute-force detection requires tuning to reduce false positives
+
+-SIEM effectiveness depends heavily on log quality (not quantity) and coverge
+
+## Future Improvements
+
+-Compare SIEM detection results before and after implementing account lockout policies
+
+-Use another SIEM tool (Splunk or Elastic) for comparision
+
+-Automate alerting and response workflows
+
+-Perform a password spraying attack and compare the logs to the password stuffing attack
