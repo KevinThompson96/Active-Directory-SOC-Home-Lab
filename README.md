@@ -1,6 +1,6 @@
 # Active-Directory-SOC-Home-Lab
 ## Overview
-This project builds off my previous labs, combining my Active Direcotry corpprate simulation, adding a network firewall and SIEM, and performing an attack/security monitoring exercise. After configuring the lab architecture in VMware, my goal was to perform a remote desktop protocol (RDP) brute-force password attack against the client machine in my AD and detect the activity using a SIEM platform.
+This project simulates a brute-force attack against a Windows domain environment and demonstrates how it can be detected using a Security Information and Event Management (SIEM) tool.  
 
 ## Environment/Technology
 -VMware Workstation Pro
@@ -71,17 +71,33 @@ After the successful login, logs were generated for a user account created and f
 
 ![Wazuh user added and admin group changed](Screenshots/User-Admin-Added.png)
 
-**Observations:**
+**Detection Walkthrough:**
 
--A high volume of failed login attempts in a short timeframe
+During the attack, multiple Windows Event ID 4625 logs were generated.
 
--Consistent targeting of a single user account (password stuffing)
+Indicators observed:
 
--User added to system and administrator group modified
+-Repeated failed login attempts
+
+-Same username targeted
+
+-Same source IP
+
+This behavior indicates a brute-force attack. Wazuh correlated these events and triggered alerts based on failed authentication thresholds.
+
+**Analyst Perspective:**
+
+If this alert appeared in a SOC, I would:
+
+1. Validate source IP
+2. Check volume of failed logins
+3. Identify targeted account
+4. Confirm successful login (Event ID 4624)
+5. Escalate as potential credential compromise
 
 ## Firewall Configuration
 
-To harden the firewall, I first deleted the port forwarding rule on port 3389 to remove RDP access entirely. Then, I added a rule to block all incoming traffic from the attacker's IP address (192.168.52.129)
+To harden the firewall after the attack, I first deleted the port forwarding rule on port 3389 to remove RDP access entirely. Then, I added a rule to block all incoming traffic from the attacker's IP address (192.168.52.129)
 
 ![Delete rule](Screenshots/Delete-Rule.png)
 
