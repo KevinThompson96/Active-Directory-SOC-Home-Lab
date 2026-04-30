@@ -114,7 +114,7 @@ To protect against password stuffing, I added a group policy object (gpo) in my 
 
 ![Unlock](Screenshots/Unlock.png)
 
-**The Local administrator account:**
+**The Local Administrator Account:**
 
 Since i performed the brute-force attack on the client's local administrator account, its important to note that the GPO from above will not apply to the local admin account. I was having trouble figuring out how to edit the local users and group policy settings, as the domain controllers GPO overrides (and locks) the local settings. Instead, there are better ways to protect the local admin account:
 
