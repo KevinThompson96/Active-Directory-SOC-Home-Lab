@@ -77,13 +77,31 @@ The brute-force attack was identified by analyzing repeated failed login attempt
 
 -User added to system and administrator group modified
 
+## Firewall Configuration
 
-**Group Policy Account Lockout and Firewall Configuration**
+To harden the firewall, I first deleted the port forwarding rule on port 3389 to remove RDP access entirely. Then, I added a rule to block all incoming traffic from the attacker's IP address (192.168.52.129)
+
+![Delete rule](Screenshots/Delete-Rule.png)
+
+![Add rule](Screenshots/Add-Rule.png)
+
+
+## Group Policy Account Lockout
 
 To protect against password stuffing, I added a group policy object (gpo) in my domain through active directory, setting the threshold to 5 invalid logon attempts before the account it locked out (for 10 minutes), and the counter resets every 10 minutes. Down below is a user account in the domain (mbailey) that has been locked out after 5 repeated attempts. To unlock the account immediately as an administrator, I could go to active directory users and groups on the domain controller, find the account in my domain, and unlock it manually. 
 
 ![GPO](Screenshots/GPO.png)
 
 ![Lockout](Screenshots/Lockout.png)
+
+**The Local administrator account:**
+
+Since i performed the brute-force attack on the client's local administrator account, its important to note that the GPO from above will not apply to the local admin account. I was having trouble figuring out how to edit the local users and group policy settings, as the domain controllers GPO overrides (and locks) the local settings. Instead, there are better ways to protect the local admin account:
+
+-Instead of lockout, deny access to the administrator account from the network
+
+-Rename/diasbale the built-in administrator account
+
+-Use Microsoft Local Administrator Password Solution (LAPS) to get a unique random local admin password that is stored securely in Active Directory
 
 
